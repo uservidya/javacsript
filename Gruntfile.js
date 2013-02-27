@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     meta : {
       pkg : grunt.file.readJSON('package.json'),
-      src : ['sorting/**/*.js']
+      src : ['src/**/*.js']
     },
     buster: {
       test: {

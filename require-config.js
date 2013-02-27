@@ -5,7 +5,7 @@
 module.exports = {
   nodeRequire: require,
   paths: {
-    bubblesort : __dirname + '/sorting/bubblesort',
-    quicksort  : __dirname + '/sorting/quicksort'
+    bubblesort : __dirname + '/src/sorting/bubblesort',
+    quicksort  : __dirname + '/src/sorting/quicksort'
   }
 };
