@@ -25,7 +25,6 @@ module.exports = function(grunt) {
 
   // Define tasks
   grunt.registerTask('test', ['jshint:all', 'buster:test']);
-  grunt.registerTask('precommit', ['jshint:all', 'buster:test']);
 
   // Define default task
   grunt.registerTask('default', ['test']);
