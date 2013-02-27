@@ -1,0 +1,24 @@
+{
+  "name": "javaCSript",
+  "description": "Computer Science fundamentals implemented in JavaScript",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "author": {
+    "name": "Nathan Houle",
+    "email": "nathan@nathanhoule.com",
+    "url": "https://github.com/ndhoule/javaCSript"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ndhoule/javaCSript.git"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "buster": "~0.6.12",
+    "grunt-buster": "~0.1.2",
+    "grunt-contrib-jshint": "~0.2.0",
+    "requirejs": "~2.1.4"
+  }
+}
