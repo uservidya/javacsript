@@ -9,7 +9,7 @@ define(function() {
       array[j] = temp;
     };
 
-    // Sorts an array in O(2n) average and worst-case time and ~O(1) space complexity
+    // Sorts an array in O(n^2) average and worst-case time and ~O(1) space complexity
     var bubblesort = function(array) {
       // Visit each node in the array and compare it to the next node. If the next
       // node is less than the current node, swap the two nodes.
