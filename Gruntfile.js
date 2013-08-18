@@ -1,5 +1,5 @@
 /*jshint -W079 */
-// Ignore lodash redef here; JSHint dislikes the runner.js global _ definition
+// Ignore lodash redef here; JSHint dislikes the setup.js global _ definition
 
 var _ = require('lodash');
 
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
       test: {
         options: {
           reporter: 'min',
-          require: 'test/runner'
+          require: 'test/setup'
         },
         src: [files.tests]
       }
