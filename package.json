@@ -12,13 +12,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ndhoule/javaCSript.git"
+    "url": "https://github.com/ndhoule/javacsript.git"
   },
   "devDependencies": {
-    "grunt": "~0.4.0",
-    "buster": "~0.6.12",
-    "grunt-buster": "~0.1.2",
-    "grunt-contrib-jshint": "~0.2.0",
-    "requirejs": "~2.1.4"
+    "chai": "~1.7.2",
+    "grunt-notify": "~0.2.7",
+    "grunt-contrib-jshint": "~0.6.2",
+    "grunt-contrib-watch": "~0.5.1",
+    "grunt-mocha-test": "~0.6.2",
+    "grunt": "~0.4.1",
+    "lodash": "~1.3.1",
+    "chai-factories": "~0.1.0",
+    "sinon": "~1.7.3",
+    "sinon-chai": "~2.4.0"
   }
 }
