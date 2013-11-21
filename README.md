@@ -26,7 +26,7 @@ npm install
 test file.
 
 ### Precommit Hooks
-Run `./git-hooks` to enable pre-commit testing. This will prevent you from
+Run `bin/git-hooks` to enable pre-commit testing. This will prevent you from
 committing if you have failing specs. If you need to override the commit tests,
 run `git commit` with the `-n` flag.
 

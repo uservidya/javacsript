@@ -1,14 +1,15 @@
-/*jshint -W079 */
-// Ignore lodash redef here; JSHint dislikes the setup.js global _ definition
+/*jshint -W079*/
+// Ignore global _ redefinition in test/config/setup.js for JSHint
 
-var _ = require('lodash');
+'use strict';
 
 module.exports = function(grunt) {
-  'use strict';
+  require('load-grunt-tasks')(grunt);
 
   var files = {
     grunt: 'Gruntfile.js',
-    tests: 'test/unit/**/*Spec.js',
+    testConfig: 'test/config/**/*.js',
+    test: 'test/unit/**/*[Ss]pec.js',
     src: 'src/**/*.js'
   };
 
@@ -22,49 +23,55 @@ module.exports = function(grunt) {
       test: {
         options: {
           reporter: 'min',
-          require: 'test/setup'
+          require: 'test/config/setup'
         },
-        src: [files.tests]
+        src: [files.test]
       }
     },
 
     jshint: {
       options: {
-        jshintrc: '.jshintrc'
+        reporter: require('jshint-stylish')
       },
-      all: _.toArray(files)
+      test: {
+        options: {
+          jshintrc: 'test/.jshintrc'
+        },
+        files: {
+          src: [files.test, files.testConfig]
+        }
+      },
+      src: {
+        options: {
+          jshintrc: '.jshintrc'
+        },
+        files: {
+          src: [files.grunt, files.src]
+        }
+      }
     },
 
     watch: {
       gruntfile: {
-        files: 'Gruntfile',
-        tasks: ['lint']
+        files: [files.grunt],
+        tasks: ['jshint']
       },
-      tests: {
-        files: [files.tests, files.src],
-        tasks: ['test', 'lint']
+      test: {
+        files: [files.testConfig, files.test, files.src],
+        tasks: ['test']
       }
     }
   });
 
-  // On watch events, configure jshint:all to run only on changed file
-  grunt.event.on('watch', function(action, filepath) {
-    grunt.config(['jshint', 'all'], filepath);
-  });
-
-  // Load third-party modules
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-mocha-test');
-  grunt.loadNpmTasks('grunt-notify');
-
   // Tasks
-  grunt.registerTask('lint', ['jshint:all']);
-  grunt.registerTask('test', ['mochaTest']);
+  grunt.registerTask('test', [
+    'jshint',
+    'mochaTest'
+  ]);
 
   // Runs just before a commit. Don't put tasks that generate files here as
   // they won't be included in your commit.
-  grunt.registerTask('precommit', ['test', 'lint']);
+  grunt.registerTask('precommit', ['test']);
 
   // Default task (runs when running `grunt` without arguments)
   grunt.registerTask('default', ['test']);
