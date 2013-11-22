@@ -86,6 +86,74 @@ describe('LinkedList', function() {
     });
   });
 
+  describe('size#get', function() {
+    it('should return `0` when the list is empty', function() {
+      expect(linkedList.size).to.equal(0);
+    });
+
+    it('should increase as items are added to the head of the list', function() {
+      linkedList.addToHead(uniqueObject1);
+
+      expect(linkedList.size).to.equal(1);
+
+      linkedList.addToHead(uniqueObject2);
+
+      expect(linkedList.size).to.equal(2);
+    });
+
+    it('should increase as items are added to the tail of the list', function() {
+      linkedList.addToTail(uniqueObject1);
+
+      expect(linkedList.size).to.equal(1);
+
+      linkedList.addToTail(uniqueObject2);
+
+      expect(linkedList.size).to.equal(2);
+    });
+
+    it('should decrease as items are removed from the head of the list', function() {
+      linkedList.addToHead(uniqueObject1);
+      linkedList.addToHead(uniqueObject2);
+
+      expect(linkedList.size).to.equal(2);
+
+      linkedList.removeHead();
+
+      expect(linkedList.size).to.equal(1);
+
+      linkedList.removeHead();
+
+      expect(linkedList.size).to.equal(0);
+    });
+
+    it('should decrease as items are removed from the tail of the list', function() {
+      linkedList.addToTail(uniqueObject1);
+      linkedList.addToTail(uniqueObject2);
+
+      expect(linkedList.size).to.equal(2);
+
+      linkedList.removeTail();
+
+      expect(linkedList.size).to.equal(1);
+
+      linkedList.removeTail();
+
+      expect(linkedList.size).to.equal(0);
+    });
+
+    it('should not decrease when an attempt is made to remove nodes from an empty list', function() {
+      expect(linkedList.size).to.equal(0);
+
+      linkedList.removeHead();
+
+      expect(linkedList.size).to.equal(0);
+
+      linkedList.removeHead();
+
+      expect(linkedList.size).to.equal(0);
+    });
+  });
+
   describe('tail#get', function() {
     it('should return the value stored at the tail node', function() {
       linkedList.addToTail(uniqueObject1);

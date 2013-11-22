@@ -18,6 +18,7 @@ Node.prototype.constructor = Node;
 var LinkedList = function() {
   Object.defineProperties(this, {
     _head: { value: null, writable: true },
+    _size: { value: 0, writable: true },
     _tail: { value: null, writable: true }
   });
 };
@@ -38,6 +39,12 @@ LinkedList.prototype._getPreviousTail = function(/* current, previous */) {
 Object.defineProperty(LinkedList.prototype, 'head', {
   get: function() {
     return this._head && this._head.value;
+  }
+});
+
+Object.defineProperty(LinkedList.prototype, 'size', {
+  get: function() {
+    return this._size;
   }
 });
 
@@ -82,6 +89,8 @@ LinkedList.prototype.addToHead = function(value) {
     this._tail = this._head;
   }
 
+  this._size += 1;
+
   return this;
 };
 
@@ -95,6 +104,8 @@ LinkedList.prototype.addToTail = function(value) {
     this._tail.next = node;
     this._tail = node;
   }
+
+  this._size += 1;
 
   return this;
 };
@@ -113,6 +124,8 @@ LinkedList.prototype.removeHead = function() {
     this._tail = null;
   }
 
+  this._size -= 1;
+
   return result;
 };
 
@@ -129,6 +142,8 @@ LinkedList.prototype.removeTail = function() {
   if (this._tail === null) {
     this._head = null;
   }
+
+  this._size -= 1;
 
   return result;
 };
