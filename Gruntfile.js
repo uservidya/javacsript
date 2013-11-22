@@ -31,7 +31,7 @@ module.exports = function(grunt) {
         options: {
           reporter: 'html-cov',
           quiet: true,
-          captureFile: 'coverage/coverage.html'
+          captureFile: 'coverage.html'
         },
         src: [files.test]
       },
@@ -86,6 +86,8 @@ module.exports = function(grunt) {
   // Runs just before a commit. Don't put tasks that generate files here as
   // they won't be included in your commit.
   grunt.registerTask('precommit', ['test']);
+
+  grunt.registerTask('travis', ['jshint', 'mochaTest:']);
 
   // Default task (runs when running `grunt` without arguments)
   grunt.registerTask('default', ['test']);
