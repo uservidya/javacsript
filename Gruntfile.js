@@ -19,6 +19,18 @@ module.exports = function(grunt) {
       pkg : grunt.file.readJSON('package.json')
     },
 
+    connect: {
+      options: {
+        port: 9000,
+        hostname: 'localhost'
+      },
+      coverage: {
+        options: {
+          open: 'http://<%= connect.options.hostname %>:<%= connect.options.port %>/coverage.html'
+        }
+      }
+    },
+
     mochaTest: {
       test: {
         options: {
@@ -74,6 +86,16 @@ module.exports = function(grunt) {
         files: [files.testConfig, files.test, files.src],
         tasks: ['test']
       }
+    },
+
+    concurrent: {
+      options: {
+        logConcurrentOutput: true
+      },
+      dev: [
+        'connect:coverage:keepalive',
+        'watch'
+      ]
     }
   });
 
@@ -83,11 +105,13 @@ module.exports = function(grunt) {
     'mochaTest'
   ]);
 
+  grunt.registerTask('dev', [
+    'concurrent:dev'
+  ]);
+
   // Runs just before a commit. Don't put tasks that generate files here as
   // they won't be included in your commit.
   grunt.registerTask('precommit', ['test']);
-
-  grunt.registerTask('travis', ['jshint', 'mochaTest:']);
 
   // Default task (runs when running `grunt` without arguments)
   grunt.registerTask('default', ['test']);
