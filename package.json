@@ -5,7 +5,7 @@
   "scripts": {
     "test": "grunt test",
     "travis-cov": {
-      "threshold": 0
+      "threshold": 97
     }
   },
   "author": {
