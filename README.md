@@ -1,6 +1,8 @@
 JavaCSript
 ==========
 
+[![Build Status](https://travis-ci.org/javacsript/javacsript.png)](https://travis-ci.org/ndhoule/javacsript)
+
 Computer science fundamentals implemented in JavaScript.
 
 ## File Structure
