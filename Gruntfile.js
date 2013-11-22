@@ -23,7 +23,21 @@ module.exports = function(grunt) {
       test: {
         options: {
           reporter: 'min',
-          require: 'test/config/setup'
+          require: ['test/config/setup', 'test/config/coverage']
+        },
+        src: [files.test]
+      },
+      coverage: {
+        options: {
+          reporter: 'html-cov',
+          quiet: true,
+          captureFile: 'coverage/coverage.html'
+        },
+        src: [files.test]
+      },
+      'travis-cov': {
+        options: {
+          reporter: 'travis-cov'
         },
         src: [files.test]
       }
