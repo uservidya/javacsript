@@ -1,16 +1,6 @@
-/*jshint unused:false*/
-
 'use strict';
 
-/* Insertion Sort
- * ==============
- *
- * Best-case Time Complexity: O(n?)
- * Worst-case Time Complexity: O(n^2)
- * Average Time Complexity: O(n^2)
- * Worst-case Space Complexity: O(n)
- */
-var insertionSort = module.exports = (function() {
+var insertionSort = (function() {
   var defaultComparator = function(a, b) {
     return a - b;
   };
@@ -48,3 +38,5 @@ var insertionSort = module.exports = (function() {
     return array;
   };
 }());
+
+module.exports = insertionSort;

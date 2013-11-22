@@ -1,16 +1,6 @@
-/*jshint unused:false*/
-
 'use strict';
 
-/* Merge sort
- * ==========
- *
- * Best-case Time Complexity: O(n)
- * Worst-case Time Complexity: O(n log n)
- * Average Time Complexity: O(n log n)
- * Worst-case Space Complexity: O(n)
- */
-var mergeSort = module.exports = (function() {
+var mergeSort = (function() {
   var defaultComparator = function(a, b) {
     return a - b;
   };
@@ -56,3 +46,5 @@ var mergeSort = module.exports = (function() {
     return array;
   };
 }());
+
+module.exports = mergeSort;

@@ -1,12 +1,12 @@
+'use strict';
+
 var Queue = function() {
-  return Object.create(Queue.prototype, {
+  Object.defineProperties(this, {
     _head: { value: 0, enumerable: false, writable: true },
     _tail: { value: 0, enumerable: false, writable: true },
     _storage: { value: {}, enumerable: false, writable: true }
   });
 };
-
-Queue.prototype = Object.create(null);
 
 Queue.prototype.clear = function() {
   this._head = 0;

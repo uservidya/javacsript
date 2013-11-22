@@ -1,13 +1,12 @@
-// Using an array as storage for our stack? http://youtu.be/X8PyTo6NyXA
+'use strict';
 
+// Using an array as storage for our stack? http://youtu.be/X8PyTo6NyXA
 var Stack = function() {
-  return Object.create(Stack.prototype, {
+  Object.defineProperties(this, {
     _storage: { value: {}, enumerable: false, writable: true },
     _size: { value: 0, enumerable: false, writable: true }
   });
 };
-
-Stack.prototype = Object.create(null);
 
 Stack.prototype.add = function(element) {
   if (element === undefined) {

@@ -22,6 +22,19 @@ var LinkedList = function() {
   });
 };
 
+// Indicated as private because it exposes a raw node, rather than a node's
+// stored value
+LinkedList.prototype._getPreviousTail = function(/* current, previous */) {
+  var current = arguments[0] === undefined ? this._head : arguments[0];
+  var previous = arguments[1] === undefined ? null : arguments[1];
+
+  if (current === this._tail) {
+    return previous;
+  }
+
+  return this._getPreviousTail(current.next, current);
+};
+
 Object.defineProperty(LinkedList.prototype, 'head', {
   get: function() {
     return this._head && this._head.value;
@@ -101,19 +114,6 @@ LinkedList.prototype.removeHead = function() {
   }
 
   return result;
-};
-
-// Indicated as private because it exposes a raw node, rather than a node's
-// stored value
-LinkedList.prototype._getPreviousTail = function(/* current, previous */) {
-  var current = arguments[0] === undefined ? this._head : arguments[0];
-  var previous = arguments[1] === undefined ? null : arguments[1];
-
-  if (current === this._tail) {
-    return previous;
-  }
-
-  return this._getPreviousTail(current.next, current);
 };
 
 LinkedList.prototype.removeTail = function() {

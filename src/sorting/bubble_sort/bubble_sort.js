@@ -1,16 +1,6 @@
-/*jshint unused:false*/
-
 'use strict';
 
-/* Bubble Sort
- * ===========
- *
- * Best-case Time Complexity: O(n)
- * Worst-case Time Complexity: O(n^2)
- * Average Time Complexity: O(n^2)
- * Worst-case Space Complexity: O(n)
- */
-var bubbleSort = module.exports = (function() {
+var bubbleSort = (function() {
   var defaultComparator = function(a, b) {
     return a - b;
   };
@@ -46,3 +36,5 @@ var bubbleSort = module.exports = (function() {
     return array;
   };
 }());
+
+module.exports = bubbleSort;

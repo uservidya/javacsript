@@ -1,5 +1,6 @@
-// Array-backed stack. (Also known as--tada!--an array.)
+'use strict';
 
+// Array-backed stack. (Also known as--tada!--an array.)
 var Stack = function() {
   return Object.create(Stack.prototype, {
     _storage: { value: [], enumerable: false, writable: true }

@@ -1,10 +1,12 @@
+'use strict';
+
 var queues = {
-  Queue: require(srcPath('data_structures', 'queue')),
-  ArrayQueue: require(srcPath('data_structures', 'queue_array'))
+  Queue: require(srcPath + '/data_structures/queue'),
+  ArrayQueue: require(srcPath + '/data_structures/queue_array')
 };
 
 _.each(queues, function(Queue) {
-  describe('Queue factory', function() {
+  describe('Queue constructor', function() {
     it('should be a function', function() {
       expect(Queue).to.be.a('function');
     });
@@ -14,7 +16,7 @@ _.each(queues, function(Queue) {
     var queue;
 
     beforeEach(function() {
-      queue = Queue();
+      queue = new Queue();
     });
 
     describe('instance', function() {

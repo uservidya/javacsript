@@ -1,16 +1,6 @@
-/*jshint unused:false*/
-
 'use strict';
 
-/* Quicksort
- * =========
- *
- * Best-case Time Complexity: O(n)
- * Worst-case Time Complexity: O(n^2)
- * Average Time Complexity: O(n log n)
- * Worst-case Space Complexity: O(n)
- */
-var quickSort = module.exports = (function() {
+var quickSort = (function() {
   var defaultComparator = function(a, b) {
     return a - b;
   };
@@ -77,3 +67,5 @@ var quickSort = module.exports = (function() {
     return array;
   };
 }());
+
+module.exports = quickSort;
