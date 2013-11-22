@@ -16,7 +16,7 @@ _.each(sortingAlgorithms, function(sort, name) {
     var randomArray = chai.create('randomArray');
     var comparators = chai.create('comparators');
 
-    before(function() {
+    beforeEach(function() {
       sampleArrays = randomArray.create(10, 100);
 
       sortedArrays = {
@@ -46,6 +46,10 @@ _.each(sortingAlgorithms, function(sort, name) {
       _.each(sampleArrays, function(array) {
         expect(sort(array)).to.equal(array);
       });
+    });
+
+    it('should throw an error when attempting to sort a non-array', function() {
+      expect(function() { return sort(0); }).to.throw(TypeError);
     });
 
     if (['bubbleSort', 'insertionSort', 'mergeSort'].indexOf(name) !== -1) {
