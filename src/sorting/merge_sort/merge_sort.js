@@ -27,7 +27,7 @@ var mergeSort = (function() {
   // arity at 1
   return function mergeSort(array /*, comparator */) {
     if (Object.prototype.toString.call(array) !== '[object Array]') {
-      throw new TypeError('Can only sort arrays');
+      throw new TypeError('Target must be an array but is: ' + typeof array);
     }
 
     if (array.length < 2) {
