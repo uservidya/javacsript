@@ -4,10 +4,10 @@
 'use strict';
 
 var sortingAlgorithms = {
-  bubbleSort: require(srcPath + '/sorting/bubble_sort'),
-  insertionSort: require(srcPath + '/sorting/insertion_sort'),
-  mergeSort: require(srcPath + '/sorting/merge_sort'),
-  quickSort: require(srcPath + '/sorting/quick_sort')
+  bubbleSort: require(srcPath + '/sorting/bubble_sort/bubble_sort'),
+  insertionSort: require(srcPath + '/sorting/insertion_sort/insertion_sort'),
+  mergeSort: require(srcPath + '/sorting/merge_sort/merge_sort'),
+  quickSort: require(srcPath + '/sorting/quick_sort/quick_sort')
 };
 
 _.each(sortingAlgorithms, function(sort, name) {
