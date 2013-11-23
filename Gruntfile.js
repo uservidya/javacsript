@@ -38,15 +38,21 @@ module.exports = function(grunt) {
       },
       test: {
         options: {
-          reporter: 'min'
+          reporter: 'nyan'
         }
       },
-      coverage: {
+      'html-cov': {
         options: {
           quiet: true,
           coverage: true,
           reporter: 'html-cov',
           output: 'coverage.html'
+        }
+      },
+      'travis-cov': {
+        options: {
+          coverage: true,
+          reporter: 'travis-cov'
         }
       },
       coveralls: {
@@ -104,12 +110,14 @@ module.exports = function(grunt) {
 
   // Tasks
   grunt.registerTask('test', [
+    'clear',
     'jshint',
     'mochacov:test',
-    'mochacov:coverage'
+    'mochacov:html-cov',
+    'mochacov:travis-cov'
   ]);
 
-  grunt.registerTask('dev', ['concurrent:dev']);
+  grunt.registerTask('dev', ['clear', 'concurrent:dev']);
 
   // Runs just before a commit. Don't put tasks that generate files here as
   // they won't be included in your commit.
@@ -118,6 +126,7 @@ module.exports = function(grunt) {
   grunt.registerTask('travis', [
     'jshint',
     'mochacov:test',
+    'mochacov:travis-cov',
     'mochacov:coveralls'
   ]);
 
