@@ -36,6 +36,18 @@ _.each(sortingAlgorithms, function(sort, name) {
       });
     });
 
+    it('should work on a sorted array', function() {
+      _.each(_.clone(sortedArrays), function(array) {
+        expect(sort(array)).to.eql(array);
+      });
+    });
+
+    it('should work on a reverse-sorted array', function() {
+      _.each(_.clone(sortedArrays), function(array) {
+        expect(sort(array.reverse())).to.eql(array);
+      });
+    });
+
     it('should sort arrays in descending order', function() {
       _.each(sampleArrays, function(array, i) {
         expect(sort(array)).to.eql(sortedArrays.descending[i]);
