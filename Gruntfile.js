@@ -31,27 +31,30 @@ module.exports = function(grunt) {
       }
     },
 
-    mochaTest: {
+    mochacov: {
+      options: {
+        require: ['test/config/setup'],
+        files: [files.test]
+      },
       test: {
         options: {
-          reporter: 'min',
-          require: ['test/config/setup', 'test/config/coverage']
-        },
-        src: [files.test]
+          reporter: 'min'
+        }
       },
       coverage: {
         options: {
-          reporter: 'html-cov',
           quiet: true,
-          captureFile: 'coverage.html'
-        },
-        src: [files.test]
+          coverage: true,
+          reporter: 'html-cov',
+          output: 'coverage.html'
+        }
       },
-      'travis-cov': {
+      coveralls: {
         options: {
-          reporter: 'travis-cov'
-        },
-        src: [files.test]
+          coveralls: {
+            serviceName: 'travis-ci'
+          }
+        }
       }
     },
 
@@ -102,16 +105,21 @@ module.exports = function(grunt) {
   // Tasks
   grunt.registerTask('test', [
     'jshint',
-    'mochaTest'
+    'mochacov:test',
+    'mochacov:coverage'
   ]);
 
-  grunt.registerTask('dev', [
-    'concurrent:dev'
-  ]);
+  grunt.registerTask('dev', ['concurrent:dev']);
 
   // Runs just before a commit. Don't put tasks that generate files here as
   // they won't be included in your commit.
   grunt.registerTask('precommit', ['test']);
+
+  grunt.registerTask('travis', [
+    'jshint',
+    'mochacov:test',
+    'mochacov:coveralls'
+  ]);
 
   // Default task (runs when running `grunt` without arguments)
   grunt.registerTask('default', ['test']);
