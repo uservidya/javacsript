@@ -12,27 +12,26 @@ var bubbleSort = (function() {
   };
 
   return function(array, comparator) {
+    var i, j, swapped;
+
     if (Object.prototype.toString.call(array) !== '[object Array]') {
       throw new TypeError('Target must be an array but is: ' + typeof array);
     }
 
     comparator = typeof comparator === 'function' ? comparator : defaultComparator;
 
-    var i, j, swapped;
-
-    for (i = 0; i < array.length; i++) {
-      swapped = false;
-      for (j = 0; j < array.length - i; j++) {
-        if (comparator(array[j], array[j + 1]) > 0) {
-          swapped = true;
-          swap(array, j, j + 1);
+    do {
+      for (i = 0; i < array.length; i++) {
+        swapped = false;
+        for (j = 0; j < array.length - i; j++) {
+          if (comparator(array[j], array[j + 1]) > 0) {
+            swapped = true;
+            swap(array, j, j + 1);
+          }
         }
       }
+    } while (swapped);
 
-      if (!swapped) {
-        return array;
-      }
-    }
     return array;
   };
 }());
