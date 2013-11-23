@@ -1,4 +1,4 @@
-JavaCSript [![Build Status](https://travis-ci.org/ndhoule/javacsript.png)](https://travis-ci.org/ndhoule/javacsript) [![Coverage Status](https://coveralls.io/repos/ndhoule/javacsript/badge.png)](https://coveralls.io/r/ndhoule/javacsript)
+JavaCSript &nbsp;&nbsp;&nbsp; [![Build Status](https://travis-ci.org/ndhoule/javacsript.png)](https://travis-ci.org/ndhoule/javacsript) [![Coverage Status](https://coveralls.io/repos/ndhoule/javacsript/badge.png)](https://coveralls.io/r/ndhoule/javacsript)
 ==========
 
 Computer science fundamentals implemented in JavaScript.
