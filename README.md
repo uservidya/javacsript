@@ -20,8 +20,8 @@ npm install
 
 ### Grunt Tasks
 
-`grunt test`: Run JSHint and all tests located inside of `./test` ending in
-`[Ss]pec.js`.
+`grunt dev`: Run JSHint, tests located inside of `./test` ending in
+`[Ss]pec.js`, and run and open an HTML coverage report.
 
 `grunt watch`: Run `grunt test` and `grunt spec` after edits to any source or
 test file.
