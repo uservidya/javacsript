@@ -3,7 +3,7 @@
 var Tree = require(srcPath + '/data_structures/trees/tree');
 
 describe('Tree', function() {
-  var tree, bfTree, dfTree, uniqueObject1, uniqueObject2, uniqueObject3,
+  var tree, uniqueObject1, uniqueObject2, uniqueObject3,
   uniqueObject4, uniqueObject5, uniqueObject6, uniqueObject7;
 
   beforeEach(function() {
@@ -16,33 +16,6 @@ describe('Tree', function() {
     uniqueObject5 = chai.create('uniqueObject');
     uniqueObject6 = chai.create('uniqueObject');
     uniqueObject7 = chai.create('uniqueObject');
-
-    dfTree = new Tree(0);
-    dfTree.addChild(1);
-    dfTree.children[0].addChild(2);
-    dfTree.children[0].children[0].addChild(3);
-    dfTree.children[0].children[0].addChild(4);
-    dfTree.children[0].addChild(5);
-    dfTree.children[0].addChild(6);
-    dfTree.addChild(7);
-
-    bfTree = new Tree(0);
-    bfTree.addChild(1);
-    bfTree.addChild(2);
-    bfTree.children[0].addChild(3);
-    bfTree.children[0].addChild(4);
-    bfTree.children[1].addChild(5);
-    bfTree.children[1].addChild(6);
-    bfTree.children[0].children[0].addChild(7);
-    bfTree.children[0].children[0].addChild(8);
-    bfTree.children[0].children[1].addChild(9);
-    bfTree.children[1].children[0].addChild(10);
-    bfTree.children[1].children[1].addChild(11);
-    bfTree.children[1].children[1].addChild(12);
-    bfTree.children[0].children[1].children[0].addChild(13);
-    bfTree.children[0].children[1].children[0].addChild(14);
-    bfTree.children[0].children[1].children[0].addChild(15);
-    bfTree.children[1].children[1].children[0].addChild(16);
   });
 
   it('should have the following interface', function() {
@@ -106,6 +79,15 @@ describe('Tree', function() {
   });
 
   describe('#forEach', function() {
+    var bfTree, dfTree;
+
+    beforeEach(function() {
+      var trees = chai.create('trees');
+
+      bfTree = trees.breadth;
+      dfTree = trees.depth;
+    });
+
     it('should traverse the tree in a depth-first fashion', function() {
       var result = [];
 
@@ -113,7 +95,7 @@ describe('Tree', function() {
         result.push(value);
       });
 
-      expect(result).to.eql(_.range(8));
+      expect(result).to.eql(_.range(17));
     });
 
     it('should optionally traverse the tree in a breadth-first fashion', function() {
