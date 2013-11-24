@@ -1,6 +1,6 @@
 'use strict';
 
-var LinkedList = require(srcPath + '/data_structures/linked_lists/singly_linked_list');
+var LinkedList = require(srcPath + '/data_structures/linked_lists/linked_list');
 
 describe('LinkedList', function() {
   var common, linkedList, uniques, uniqueObject1, uniqueObject2, uniqueObject3,
