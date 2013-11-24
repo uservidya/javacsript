@@ -41,6 +41,11 @@ module.exports = function(grunt) {
           reporter: 'nyan'
         }
       },
+      travis: {
+        options: {
+          reporter: 'min'
+        }
+      },
       'html-cov': {
         options: {
           quiet: true,
@@ -125,7 +130,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('travis', [
     'jshint',
-    'mochacov:test',
+    'mochacov:travis',
     'mochacov:travis-cov',
     'mochacov:coveralls'
   ]);
