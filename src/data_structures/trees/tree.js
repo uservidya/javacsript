@@ -33,21 +33,7 @@ Tree.prototype.contains = function(value) {
   return false;
 };
 
-// By default, traverses the tree depth-first.
-Tree.prototype.dfForEach = function(iterator /*, bf */) {
-  // var bf = arguments[1] === undefined ? false : arguments[1];
-  // if (bf) {
-  // } else {
-  // }
-
-  iterator(this.value);
-
-  this.children.forEach(function(node) {
-    node.dfForEach(iterator);
-  });
-};
-
-Tree.prototype.bfForEach = function(iterator /*, current */) {
+Tree.prototype._breadthForEach = function(iterator) {
   var next;
   var current = [this];
 
@@ -59,7 +45,6 @@ Tree.prototype.bfForEach = function(iterator /*, current */) {
     });
   };
 
-
   while (true) {
     next = [];
 
@@ -70,6 +55,26 @@ Tree.prototype.bfForEach = function(iterator /*, current */) {
     }
 
     current = next;
+  }
+};
+
+Tree.prototype._depthForEach = function(iterator) {
+  iterator(this.value);
+
+  this.children.forEach(function(node) {
+    node._depthForEach(iterator);
+  });
+};
+
+// By default, traverses the tree depth-first. When boolean `true` is passed as
+// the second argument, will instead traverse the tree breadth-first.
+Tree.prototype.forEach = function(iterator /* breadthFirst */) {
+  var breadthFirst = typeof arguments[1] === 'boolean' ? arguments[1] : false;
+
+  if (breadthFirst) {
+    this._breadthForEach(iterator);
+  } else {
+    this._depthForEach(iterator);
   }
 };
 

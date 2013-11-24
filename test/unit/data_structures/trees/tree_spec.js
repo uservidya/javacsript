@@ -109,7 +109,7 @@ describe('Tree', function() {
     it('should traverse the tree in a depth-first fashion', function() {
       var result = [];
 
-      dfTree.dfForEach(function(value) {
+      dfTree.forEach(function(value) {
         result.push(value);
       });
 
@@ -119,9 +119,9 @@ describe('Tree', function() {
     it('should optionally traverse the tree in a breadth-first fashion', function() {
       var result = [];
 
-      bfTree.bfForEach(function(value) {
+      bfTree.forEach(function(value) {
         result.push(value);
-      });
+      }, true);
 
       expect(result).to.eql(_.range(17));
     });
