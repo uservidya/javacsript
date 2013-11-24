@@ -33,7 +33,7 @@ describe('LinkedList', function() {
       head: Object,
       tail: Object,
       addToHead: Function,
-      addToTail: Function,
+      push: Function,
       removeHead: Function,
       removeTail: Function
     });
@@ -42,7 +42,7 @@ describe('LinkedList', function() {
   describe('#forEach', function() {
     beforeEach(function() {
       _.each(uniques, function(value) {
-        linkedList.addToTail(value);
+        linkedList.push(value);
       });
     });
 
@@ -75,7 +75,7 @@ describe('LinkedList', function() {
     });
 
     it('should return false when the list has a tail element', function() {
-      linkedList.addToTail(uniqueObject1);
+      linkedList.push(uniqueObject1);
 
       expect(linkedList.isEmpty).to.be.false;
     });
@@ -140,11 +140,11 @@ describe('LinkedList', function() {
     });
 
     it('should increase as items are added to the tail of the list', function() {
-      linkedList.addToTail(uniqueObject1);
+      linkedList.push(uniqueObject1);
 
       expect(linkedList.size).to.equal(1);
 
-      linkedList.addToTail(uniqueObject2);
+      linkedList.push(uniqueObject2);
 
       expect(linkedList.size).to.equal(2);
     });
@@ -165,8 +165,8 @@ describe('LinkedList', function() {
     });
 
     it('should decrease as items are removed from the tail of the list', function() {
-      linkedList.addToTail(uniqueObject1);
-      linkedList.addToTail(uniqueObject2);
+      linkedList.push(uniqueObject1);
+      linkedList.push(uniqueObject2);
 
       expect(linkedList.size).to.equal(2);
 
@@ -194,11 +194,11 @@ describe('LinkedList', function() {
 
   describe('tail#get', function() {
     it('should return the value stored at the tail node', function() {
-      linkedList.addToTail(uniqueObject1);
+      linkedList.push(uniqueObject1);
 
       expect(linkedList.tail).to.equal(uniqueObject1);
 
-      linkedList.addToTail(uniqueObject2);
+      linkedList.push(uniqueObject2);
 
       expect(linkedList.tail).to.equal(uniqueObject2);
     });
@@ -249,36 +249,36 @@ describe('LinkedList', function() {
     });
   });
 
-  describe('#addToTail', function() {
+  describe('#push', function() {
     it('should be chainable', function() {
-      expect(linkedList.addToTail('test')).to.equal(linkedList);
+      expect(linkedList.push('test')).to.equal(linkedList);
     });
 
     it('should add a node as the tail of the list', function() {
-      linkedList.addToTail(uniqueObject1);
+      linkedList.push(uniqueObject1);
 
       expect(linkedList._tail.value).to.equal(uniqueObject1);
     });
 
     it('should set the most recently added node as the tail', function() {
-      linkedList.addToTail(uniqueObject1);
+      linkedList.push(uniqueObject1);
 
       expect(linkedList._tail.value).to.equal(uniqueObject1);
 
-      linkedList.addToTail(uniqueObject2);
+      linkedList.push(uniqueObject2);
 
       expect(linkedList._tail.value).to.equal(uniqueObject2);
     });
 
     it('should set the head node to the new tail if the list is empty', function() {
-      linkedList.addToTail(uniqueObject1);
+      linkedList.push(uniqueObject1);
 
       expect(linkedList._head.value).to.equal(uniqueObject1);
     });
 
     it('should not set the head node to the new tail if the list is not empty', function() {
       linkedList.addToHead(uniqueObject1);
-      linkedList.addToTail(uniqueObject2);
+      linkedList.push(uniqueObject2);
 
       expect(linkedList._head.value).to.equal(uniqueObject1);
     });
@@ -333,21 +333,21 @@ describe('LinkedList', function() {
     });
 
     it('should return null when there is only one element in the list (no previous tail node)', function() {
-      linkedList.addToTail(uniqueObject1);
+      linkedList.push(uniqueObject1);
 
       expect(linkedList._getPreviousTail()).to.be.null;
     });
 
     it('should retrieve the previous tail node', function() {
-      linkedList.addToTail(uniqueObject1);
+      linkedList.push(uniqueObject1);
 
       expect(linkedList._getPreviousTail()).to.be.null;
 
-      linkedList.addToTail(uniqueObject2);
+      linkedList.push(uniqueObject2);
 
       expect(linkedList._getPreviousTail().value).to.equal(uniqueObject1);
 
-      linkedList.addToTail(uniqueObject3);
+      linkedList.push(uniqueObject3);
 
       expect(linkedList._getPreviousTail().value).to.equal(uniqueObject2);
     });
@@ -359,21 +359,21 @@ describe('LinkedList', function() {
     });
 
     it('should return the value stored at the tail element', function() {
-      linkedList.addToTail(uniqueObject1);
+      linkedList.push(uniqueObject1);
 
       expect(linkedList.removeTail()).to.equal(uniqueObject1);
     });
 
     it('should repeatedly return the value stored at the tail element', function() {
-      linkedList.addToTail(uniqueObject1);
-      linkedList.addToTail(uniqueObject2);
+      linkedList.push(uniqueObject1);
+      linkedList.push(uniqueObject2);
 
       expect(linkedList.removeTail()).to.equal(uniqueObject2);
       expect(linkedList.removeTail()).to.equal(uniqueObject1);
     });
 
     it('should dereference the head if the element being removed is the only element in the list', function() {
-      linkedList.addToTail(uniqueObject1);
+      linkedList.push(uniqueObject1);
 
       expect(linkedList.tail).to.equal(uniqueObject1);
       expect(linkedList.head).to.equal(uniqueObject1);

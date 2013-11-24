@@ -110,7 +110,7 @@ LinkedList.prototype.addToHead = function(value) {
   return this;
 };
 
-LinkedList.prototype.addToTail = function(value) {
+LinkedList.prototype.push = function(value) {
   var node = new Node(value);
 
   if (this._head === null) {
