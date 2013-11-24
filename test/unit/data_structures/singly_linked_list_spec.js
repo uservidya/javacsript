@@ -32,7 +32,7 @@ describe('LinkedList', function() {
       contains: Function,
       head: Object,
       tail: Object,
-      addToHead: Function,
+      shift: Function,
       push: Function,
       removeHead: Function,
       pop: Function
@@ -69,7 +69,7 @@ describe('LinkedList', function() {
     });
 
     it('should return false when the list has a head element', function() {
-      linkedList.addToHead(uniqueObject1);
+      linkedList.shift(uniqueObject1);
 
       expect(linkedList.isEmpty).to.be.false;
     });
@@ -81,7 +81,7 @@ describe('LinkedList', function() {
     });
 
     it('should go back to returning false when the list\'s is emptied', function() {
-      linkedList.addToHead(uniqueObject1);
+      linkedList.shift(uniqueObject1);
       linkedList.pop();
 
       expect(linkedList.isEmpty).to.be.true;
@@ -94,14 +94,14 @@ describe('LinkedList', function() {
     });
 
     it('should return false if the linked list does not contain a given value', function() {
-      linkedList.addToHead(uniqueObject1);
+      linkedList.shift(uniqueObject1);
 
       expect(linkedList.contains(uniqueObject2)).to.be.false;
     });
 
     it('should return true if the linked list contains a given value', function() {
-      linkedList.addToHead(uniqueObject1);
-      linkedList.addToHead(uniqueObject2);
+      linkedList.shift(uniqueObject1);
+      linkedList.shift(uniqueObject2);
 
       expect(linkedList.contains(uniqueObject1)).to.be.true;
     });
@@ -109,11 +109,11 @@ describe('LinkedList', function() {
 
   describe('head#get', function() {
     it('should return the value stored at the head node', function() {
-      linkedList.addToHead(uniqueObject1);
+      linkedList.shift(uniqueObject1);
 
       expect(linkedList.head).to.equal(uniqueObject1);
 
-      linkedList.addToHead(uniqueObject2);
+      linkedList.shift(uniqueObject2);
 
       expect(linkedList.head).to.equal(uniqueObject2);
     });
@@ -130,11 +130,11 @@ describe('LinkedList', function() {
     });
 
     it('should increase as items are added to the head of the list', function() {
-      linkedList.addToHead(uniqueObject1);
+      linkedList.shift(uniqueObject1);
 
       expect(linkedList.size).to.equal(1);
 
-      linkedList.addToHead(uniqueObject2);
+      linkedList.shift(uniqueObject2);
 
       expect(linkedList.size).to.equal(2);
     });
@@ -150,8 +150,8 @@ describe('LinkedList', function() {
     });
 
     it('should decrease as items are removed from the head of the list', function() {
-      linkedList.addToHead(uniqueObject1);
-      linkedList.addToHead(uniqueObject2);
+      linkedList.shift(uniqueObject1);
+      linkedList.shift(uniqueObject2);
 
       expect(linkedList.size).to.equal(2);
 
@@ -204,45 +204,45 @@ describe('LinkedList', function() {
     });
   });
 
-  describe('#addToHead', function() {
+  describe('#shift', function() {
     it('should be chainable', function() {
-      expect(linkedList.addToHead('test')).to.equal(linkedList);
+      expect(linkedList.shift('test')).to.equal(linkedList);
     });
 
     it('should add a node as the head of the list', function() {
-      linkedList.addToHead(uniqueObject1);
+      linkedList.shift(uniqueObject1);
 
       expect(linkedList._head.value).to.equal(uniqueObject1);
     });
 
     it('should set the most recently added node as the head', function() {
-      linkedList.addToHead(uniqueObject1);
+      linkedList.shift(uniqueObject1);
 
       expect(linkedList._head.value).to.equal(uniqueObject1);
 
-      linkedList.addToHead(uniqueObject2);
+      linkedList.shift(uniqueObject2);
 
       expect(linkedList._head.value).to.equal(uniqueObject2);
     });
 
     it('should have an empty `next` property when no next node has been added', function() {
-      linkedList.addToHead('fdsa');
+      linkedList.shift('fdsa');
 
       expect(linkedList._head.next).to.be.null;
     });
 
     it('should assign the old head to the current head\'s next property', function() {
-      linkedList.addToHead(uniqueObject1);
+      linkedList.shift(uniqueObject1);
 
       expect(linkedList._head.next).to.equal(null);
 
-      linkedList.addToHead(uniqueObject2);
+      linkedList.shift(uniqueObject2);
 
       expect(linkedList._head.next.value).to.equal(uniqueObject1);
     });
 
     it('should assign the element as the current tail when the list is empty', function() {
-      linkedList.addToHead(uniqueObject1);
+      linkedList.shift(uniqueObject1);
 
       expect(linkedList._head.value).to.equal(uniqueObject1);
       expect(linkedList._tail.value).to.equal(uniqueObject1);
@@ -277,7 +277,7 @@ describe('LinkedList', function() {
     });
 
     it('should not set the head node to the new tail if the list is not empty', function() {
-      linkedList.addToHead(uniqueObject1);
+      linkedList.shift(uniqueObject1);
       linkedList.push(uniqueObject2);
 
       expect(linkedList._head.value).to.equal(uniqueObject1);
@@ -290,13 +290,13 @@ describe('LinkedList', function() {
     });
 
     it('should return the value stored at the head element', function() {
-      linkedList.addToHead(uniqueObject1);
+      linkedList.shift(uniqueObject1);
 
       expect(linkedList.removeHead()).to.equal(uniqueObject1);
     });
 
     it('should remove the value stored at the head element', function() {
-      linkedList.addToHead(uniqueObject1);
+      linkedList.shift(uniqueObject1);
 
       expect(linkedList.head).to.equal(uniqueObject1);
 
@@ -306,15 +306,15 @@ describe('LinkedList', function() {
     });
 
     it('should repeatedly return the value stored at the head element', function() {
-      linkedList.addToHead(uniqueObject1);
-      linkedList.addToHead(uniqueObject2);
+      linkedList.shift(uniqueObject1);
+      linkedList.shift(uniqueObject2);
 
       expect(linkedList.removeHead()).to.equal(uniqueObject2);
       expect(linkedList.removeHead()).to.equal(uniqueObject1);
     });
 
     it('should dereference the tail if the element being removed is the only element in the list', function() {
-      linkedList.addToHead(uniqueObject1);
+      linkedList.shift(uniqueObject1);
 
       expect(linkedList.head).to.equal(uniqueObject1);
       expect(linkedList.tail).to.equal(uniqueObject1);

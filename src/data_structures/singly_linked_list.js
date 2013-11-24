@@ -95,7 +95,7 @@ LinkedList.prototype.contains = function(value /*, node */) {
   return false;
 };
 
-LinkedList.prototype.addToHead = function(value) {
+LinkedList.prototype.shift = function(value) {
   var oldHead = this._head;
 
   this._head = new Node(value);
