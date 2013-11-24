@@ -24,28 +24,26 @@ var DoublyLinkedList = function() {
   });
 };
 
-Object.defineProperty(DoublyLinkedList.prototype, 'head', {
-  get: function() {
-    return this._head && this._head.value;
-  }
-});
-
-Object.defineProperty(DoublyLinkedList.prototype, 'size', {
-  get: function() {
-    return this._size;
-  }
-});
-
-Object.defineProperty(DoublyLinkedList.prototype, 'tail', {
-  get: function() {
-    return this._tail && this._tail.value;
-  }
-});
-
-
-Object.defineProperty(DoublyLinkedList.prototype, 'isEmpty', {
-  get: function() {
-    return this._head === null && this._tail === null;
+Object.defineProperties(DoublyLinkedList.prototype, {
+  head: {
+    get: function() {
+      return this._head && this._head.value;
+    }
+  },
+  tail: {
+    get: function() {
+      return this._tail && this._tail.value;
+    }
+  },
+  size: {
+    get: function() {
+      return this._size;
+    }
+  },
+  isEmpty: {
+    get: function() {
+      return this._head === null && this._tail === null;
+    }
   }
 });
 

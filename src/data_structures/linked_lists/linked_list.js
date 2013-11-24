@@ -36,28 +36,26 @@ LinkedList.prototype._getPreviousTail = function(/* current, previous */) {
   return this._getPreviousTail(current.next, current);
 };
 
-Object.defineProperty(LinkedList.prototype, 'head', {
-  get: function() {
-    return this._head && this._head.value;
-  }
-});
-
-Object.defineProperty(LinkedList.prototype, 'size', {
-  get: function() {
-    return this._size;
-  }
-});
-
-Object.defineProperty(LinkedList.prototype, 'tail', {
-  get: function() {
-    return this._tail && this._tail.value;
-  }
-});
-
-
-Object.defineProperty(LinkedList.prototype, 'isEmpty', {
-  get: function() {
-    return this._head === null && this._tail === null;
+Object.defineProperties(LinkedList.prototype, {
+  head: {
+    get: function() {
+      return this._head && this._head.value;
+    }
+  },
+  tail: {
+    get: function() {
+      return this._tail && this._tail.value;
+    }
+  },
+  size: {
+    get: function() {
+      return this._size;
+    }
+  },
+  isEmpty: {
+    get: function() {
+      return this._head === null && this._tail === null;
+    }
   }
 });
 
