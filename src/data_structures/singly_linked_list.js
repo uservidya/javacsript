@@ -61,6 +61,22 @@ Object.defineProperty(LinkedList.prototype, 'isEmpty', {
   }
 });
 
+LinkedList.prototype.forEach = function(iterator /*, node */) {
+  var node = arguments[1] === undefined ? this._head : arguments[1];
+
+  if (node === null || !Object.isPrototypeOf.call(Node.prototype, node)) {
+    throw new TypeError('Node must be an instance of the Node class.');
+  }
+
+  iterator(node.value, node);
+
+  if (node.next) {
+    return this.forEach(iterator, node.next);
+  }
+
+  return this;
+};
+
 LinkedList.prototype.contains = function(value /*, node */) {
   var node = arguments[1] || this._head;
 

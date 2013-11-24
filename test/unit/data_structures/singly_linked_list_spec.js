@@ -3,13 +3,27 @@
 var LinkedList = require(srcPath + '/data_structures/singly_linked_list');
 
 describe('LinkedList', function() {
-  var linkedList, uniqueObject1, uniqueObject2, uniqueObject3;
+  var common, linkedList, uniques, uniqueObject1, uniqueObject2, uniqueObject3,
+    uniqueObject4, uniqueObject5;
 
   beforeEach(function() {
     linkedList = new LinkedList();
+
+    common = chai.create('common');
+
     uniqueObject1 = chai.create('uniqueObject');
     uniqueObject2 = chai.create('uniqueObject');
     uniqueObject3 = chai.create('uniqueObject');
+    uniqueObject4 = chai.create('uniqueObject');
+    uniqueObject5 = chai.create('uniqueObject');
+
+    uniques = [
+      uniqueObject1,
+      uniqueObject2,
+      uniqueObject3,
+      uniqueObject4,
+      uniqueObject5
+    ];
   });
 
   it('should have the following interface', function() {
@@ -22,6 +36,30 @@ describe('LinkedList', function() {
       addToTail: Function,
       removeHead: Function,
       removeTail: Function
+    });
+  });
+
+  describe('#forEach', function() {
+    beforeEach(function() {
+      _.each(uniques, function(value) {
+        linkedList.addToTail(value);
+      });
+    });
+
+    it('should visit every node in the linked list, in head-to-tail order', function() {
+      var result = [];
+
+      linkedList.forEach(function(value) {
+        result.push(value);
+      });
+
+      expect(uniques).to.eql(result);
+    });
+
+    it('should throw an error when trying to iterate over a non-node', function() {
+      expect(function() {
+        linkedList.forEach(common.noop, null);
+      }).to.throw(TypeError);
     });
   });
 
