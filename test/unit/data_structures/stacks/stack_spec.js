@@ -1,8 +1,8 @@
 'use strict';
 
 var stacks = {
-  Stack: require(srcPath + '/data_structures/stack'),
-  ArrayStack: require(srcPath + '/data_structures/stack_array')
+  Stack: require(srcPath + '/data_structures/stacks/stack'),
+  ArrayStack: require(srcPath + '/data_structures/stacks/stack_array')
 };
 
 _.each(stacks, function(Stack) {

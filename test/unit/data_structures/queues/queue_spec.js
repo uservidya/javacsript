@@ -1,8 +1,8 @@
 'use strict';
 
 var queues = {
-  Queue: require(srcPath + '/data_structures/queue'),
-  ArrayQueue: require(srcPath + '/data_structures/queue_array')
+  Queue: require(srcPath + '/data_structures/queues/queue'),
+  ArrayQueue: require(srcPath + '/data_structures/queues/queue_array')
 };
 
 _.each(queues, function(Queue) {
