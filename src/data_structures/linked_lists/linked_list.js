@@ -101,7 +101,7 @@ LinkedList.prototype.shift = function(value) {
   this._head = new Node(value);
   this._head.next = oldHead;
 
-  if (this._tail === null) {
+  if (!this._tail) {
     this._tail = this._head;
   }
 
@@ -113,11 +113,11 @@ LinkedList.prototype.shift = function(value) {
 LinkedList.prototype.push = function(value) {
   var node = new Node(value);
 
-  if (this._head === null) {
-    this._head = node;
+  if (this._head) {
+    this._tail.next = node;
     this._tail = node;
   } else {
-    this._tail.next = node;
+    this._head = node;
     this._tail = node;
   }
 
@@ -136,7 +136,7 @@ LinkedList.prototype.unshift = function() {
   result = this._head.value;
   this._head = this._head.next;
 
-  if (this._head === null) {
+  if (!this._head) {
     this._tail = null;
   }
 
@@ -155,7 +155,7 @@ LinkedList.prototype.pop = function() {
   result = this._tail.value;
   this._tail = this._getPreviousTail();
 
-  if (this._tail === null) {
+  if (!this._tail) {
     this._head = null;
   }
 

@@ -93,7 +93,7 @@ DoublyLinkedList.prototype.shift = function(value) {
     oldHead.previous = this._head;
   }
 
-  if (this._tail === null) {
+  if (!this._tail) {
     this._tail = this._head;
   }
 
@@ -109,11 +109,11 @@ DoublyLinkedList.prototype.push = function(value) {
     node.previous = this._tail;
   }
 
-  if (this._head === null) {
-    this._head = node;
+  if (this.head) {
+    this._tail.next = node;
     this._tail = node;
   } else {
-    this._tail.next = node;
+    this._head = node;
     this._tail = node;
   }
 
@@ -132,10 +132,10 @@ DoublyLinkedList.prototype.unshift = function() {
   result = this._head.value;
   this._head = this._head.next;
 
-  if (this._head === null) {
-    this._tail = null;
-  } else {
+  if (this._head) {
     this._head.previous = null;
+  } else {
+    this._tail = null;
   }
 
   this._size -= 1;
@@ -153,7 +153,7 @@ DoublyLinkedList.prototype.pop = function() {
   result = this._tail.value;
   this._tail = this._tail.previous;
 
-  if (this._tail === null) {
+  if (!this._tail) {
     this._head = null;
   }
 
