@@ -145,7 +145,7 @@ LinkedList.prototype.removeHead = function() {
   return result;
 };
 
-LinkedList.prototype.removeTail = function() {
+LinkedList.prototype.pop = function() {
   var result;
 
   if (this.isEmpty) {

@@ -35,7 +35,7 @@ describe('LinkedList', function() {
       addToHead: Function,
       push: Function,
       removeHead: Function,
-      removeTail: Function
+      pop: Function
     });
   });
 
@@ -82,7 +82,7 @@ describe('LinkedList', function() {
 
     it('should go back to returning false when the list\'s is emptied', function() {
       linkedList.addToHead(uniqueObject1);
-      linkedList.removeTail();
+      linkedList.pop();
 
       expect(linkedList.isEmpty).to.be.true;
     });
@@ -170,11 +170,11 @@ describe('LinkedList', function() {
 
       expect(linkedList.size).to.equal(2);
 
-      linkedList.removeTail();
+      linkedList.pop();
 
       expect(linkedList.size).to.equal(1);
 
-      linkedList.removeTail();
+      linkedList.pop();
 
       expect(linkedList.size).to.equal(0);
     });
@@ -353,23 +353,23 @@ describe('LinkedList', function() {
     });
   });
 
-  describe('#removeTail', function() {
+  describe('#pop', function() {
     it('should return undefined if the linked list is empty', function() {
-      expect(linkedList.removeTail()).to.be.undefined;
+      expect(linkedList.pop()).to.be.undefined;
     });
 
     it('should return the value stored at the tail element', function() {
       linkedList.push(uniqueObject1);
 
-      expect(linkedList.removeTail()).to.equal(uniqueObject1);
+      expect(linkedList.pop()).to.equal(uniqueObject1);
     });
 
     it('should repeatedly return the value stored at the tail element', function() {
       linkedList.push(uniqueObject1);
       linkedList.push(uniqueObject2);
 
-      expect(linkedList.removeTail()).to.equal(uniqueObject2);
-      expect(linkedList.removeTail()).to.equal(uniqueObject1);
+      expect(linkedList.pop()).to.equal(uniqueObject2);
+      expect(linkedList.pop()).to.equal(uniqueObject1);
     });
 
     it('should dereference the head if the element being removed is the only element in the list', function() {
@@ -378,7 +378,7 @@ describe('LinkedList', function() {
       expect(linkedList.tail).to.equal(uniqueObject1);
       expect(linkedList.head).to.equal(uniqueObject1);
 
-      linkedList.removeTail();
+      linkedList.pop();
 
       expect(linkedList.tail).to.be.null;
       expect(linkedList.head).to.be.null;
