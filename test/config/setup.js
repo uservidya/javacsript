@@ -15,13 +15,13 @@ global.chai.use(require('sinon-chai'));
 global.chai.use(require('chai-factories'));
 global.chai.use(require('chai-interface'));
 
+// Helper variables for locating files
+global.rootPath = path.join(__dirname, '..', '..');
+global.srcPath = path.join(rootPath, 'src');
+
 // Factories
 var factoriesPath = path.join(__dirname, '..', 'factories');
 
 _.each(require('fs').readdirSync(factoriesPath), function(file) {
   require(path.join(factoriesPath, file));
 });
-
-// Helper variables for locating files
-global.rootPath = path.join(__dirname, '..', '..');
-global.srcPath = path.join(rootPath, 'src');
