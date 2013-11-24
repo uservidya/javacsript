@@ -126,7 +126,7 @@ LinkedList.prototype.push = function(value) {
   return this;
 };
 
-LinkedList.prototype.removeHead = function() {
+LinkedList.prototype.unshift = function() {
   var result;
 
   if (this.isEmpty) {

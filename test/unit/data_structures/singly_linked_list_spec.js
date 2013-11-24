@@ -34,7 +34,7 @@ describe('LinkedList', function() {
       tail: Object,
       shift: Function,
       push: Function,
-      removeHead: Function,
+      unshift: Function,
       pop: Function
     });
   });
@@ -155,11 +155,11 @@ describe('LinkedList', function() {
 
       expect(linkedList.size).to.equal(2);
 
-      linkedList.removeHead();
+      linkedList.unshift();
 
       expect(linkedList.size).to.equal(1);
 
-      linkedList.removeHead();
+      linkedList.unshift();
 
       expect(linkedList.size).to.equal(0);
     });
@@ -182,11 +182,11 @@ describe('LinkedList', function() {
     it('should not decrease when an attempt is made to remove nodes from an empty list', function() {
       expect(linkedList.size).to.equal(0);
 
-      linkedList.removeHead();
+      linkedList.unshift();
 
       expect(linkedList.size).to.equal(0);
 
-      linkedList.removeHead();
+      linkedList.unshift();
 
       expect(linkedList.size).to.equal(0);
     });
@@ -284,15 +284,15 @@ describe('LinkedList', function() {
     });
   });
 
-  describe('#removeHead', function() {
+  describe('#unshift', function() {
     it('should return undefined if the linked list is empty', function() {
-      expect(linkedList.removeHead()).to.be.undefined;
+      expect(linkedList.unshift()).to.be.undefined;
     });
 
     it('should return the value stored at the head element', function() {
       linkedList.shift(uniqueObject1);
 
-      expect(linkedList.removeHead()).to.equal(uniqueObject1);
+      expect(linkedList.unshift()).to.equal(uniqueObject1);
     });
 
     it('should remove the value stored at the head element', function() {
@@ -300,7 +300,7 @@ describe('LinkedList', function() {
 
       expect(linkedList.head).to.equal(uniqueObject1);
 
-      linkedList.removeHead();
+      linkedList.unshift();
 
       expect(linkedList.head).to.not.equal(uniqueObject2);
     });
@@ -309,8 +309,8 @@ describe('LinkedList', function() {
       linkedList.shift(uniqueObject1);
       linkedList.shift(uniqueObject2);
 
-      expect(linkedList.removeHead()).to.equal(uniqueObject2);
-      expect(linkedList.removeHead()).to.equal(uniqueObject1);
+      expect(linkedList.unshift()).to.equal(uniqueObject2);
+      expect(linkedList.unshift()).to.equal(uniqueObject1);
     });
 
     it('should dereference the tail if the element being removed is the only element in the list', function() {
@@ -319,7 +319,7 @@ describe('LinkedList', function() {
       expect(linkedList.head).to.equal(uniqueObject1);
       expect(linkedList.tail).to.equal(uniqueObject1);
 
-      linkedList.removeHead();
+      linkedList.unshift();
 
       expect(linkedList.head).to.be.null;
       expect(linkedList.tail).to.be.null;
