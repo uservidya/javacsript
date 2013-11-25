@@ -13,7 +13,6 @@ global.sinon = require('sinon');
 // Chai plugins
 global.chai.use(require('sinon-chai'));
 global.chai.use(require('chai-factories'));
-global.chai.use(require('chai-interface'));
 
 // Helper variables for locating files
 global.rootPath = path.join(__dirname, '..', '..');

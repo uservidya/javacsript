@@ -26,19 +26,6 @@ describe('LinkedList', function() {
     ];
   });
 
-  it('should have the following interface', function() {
-    expect(linkedList).to.have.interface({
-      isEmpty: Boolean,
-      contains: Function,
-      head: Object,
-      tail: Object,
-      shift: Function,
-      push: Function,
-      unshift: Function,
-      pop: Function
-    });
-  });
-
   describe('#forEach', function() {
     beforeEach(function() {
       _.each(uniques, function(value) {

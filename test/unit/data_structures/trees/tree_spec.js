@@ -18,13 +18,6 @@ describe('Tree', function() {
     uniqueObject7 = chai.create('uniqueObject');
   });
 
-  it('should have the following interface', function() {
-    expect(tree).to.have.interface({
-      addChild: Function,
-      contains: Function
-    });
-  });
-
   it('should add a value to the root node when passed in at construction time', function() {
     tree = new Tree(uniqueObject1);
 
