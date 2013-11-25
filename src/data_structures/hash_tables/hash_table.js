@@ -1,11 +1,12 @@
 'use strict';
 
 var generateHash = require('./lib/hash');
+var FixedArray = require('./lib/fixed_array');
 
 var HashTable = function(maxSize) {
   Object.defineProperties(this, {
     _maxSize: { value: typeof maxSize === 'number' ? maxSize : 1000 },
-    _storage: { value: [] }
+    _storage: { value: new FixedArray(maxSize) }
   });
 };
 
@@ -18,9 +19,9 @@ HashTable.prototype.set = function(key, value) {
 
   hash = generateHash(key, this._maxSize);
 
-  this._storage[hash] = value;
+  this._storage.set(hash, value);
 
-  return this._storage[hash];
+  return this._storage.get(hash);
 };
 
 HashTable.prototype.get = function(key) {
@@ -28,7 +29,7 @@ HashTable.prototype.get = function(key) {
     key = JSON.stringify(key);
   }
 
-  return this._storage[generateHash(key, this._maxSize)];
+  return this._storage.get(generateHash(key, this._maxSize));
 };
 
 HashTable.prototype.remove = function(key) {
@@ -38,13 +39,13 @@ HashTable.prototype.remove = function(key) {
     key = JSON.stringify(key);
   }
 
-  val = this._storage[generateHash(key, this._maxSize)];
+  val = this._storage.get(generateHash(key, this._maxSize));
 
   if (val === undefined) {
     return false;
   }
 
-  delete this._storage[generateHash(key, this._maxSize)];
+  this._storage.remove(generateHash(key, this._maxSize));
 
   return true;
 };
