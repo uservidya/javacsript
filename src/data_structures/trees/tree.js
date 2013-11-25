@@ -33,30 +33,28 @@ Tree.prototype.contains = function(value) {
   return false;
 };
 
-Tree.prototype._breadthForEach = function(iterator) {
-  var next;
-  var current = [this];
+Tree.prototype._breadthForEach = (function() {
+  var processNodes = function(iterator, current, next) {
+    current.forEach(function(node) {
+      iterator(node.value);
 
-  var it = function(node) {
-    iterator(node.value);
-
-    node.children.forEach(function(node) {
-      next.push(node);
+      node.children.forEach(function(node) {
+        next.push(node);
+      });
     });
   };
 
-  while (true) {
-    next = [];
+  return function(iterator /*, current */) {
+    var current = arguments [1] || [this];
+    var next = [];
 
-    current.forEach(it);
+    processNodes(iterator, current, next);
 
-    if (!next.length) {
-      break;
+    if (next.length) {
+      this._breadthForEach(iterator, next);
     }
-
-    current = next;
-  }
-};
+  };
+}());
 
 Tree.prototype._depthForEach = function(iterator) {
   iterator(this.value);
